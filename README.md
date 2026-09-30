@@ -1,10 +1,12 @@
 # send-permit2-bound
 
-**Status:** private LOCAL_SCAFFOLD · LaunchGate-before-expansion · not published
+More from yellowgram: [OSS tools](https://www.yellowgram.dev/oss).
+
+**Status:** public MIT source · not on npm yet · no Polar
 
 Pin Uniswap **Permit2** by chain and bound `approve` / `permit*` / `permitTransferFrom*` calldata at `eth_sendRawTransaction`. Optional typed linkage stub — **no phishing UX**. Compose after `send-approve-bound`. No keys. No simulation.
 
-> **Charter:** [CHARTER.md](./CHARTER.md) — no Soft\* · no Polar/checkout · no custody · no public/npm until founder
+> **Charter:** [CHARTER.md](./CHARTER.md) — no Soft\* · no Polar/checkout · no custody · not published to npm
 
 ## Pin (local)
 

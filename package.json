@@ -44,7 +44,8 @@
   ],
   "license": "MIT",
   "author": {
-    "name": "yellowgram"
+    "name": "yellowgram",
+    "url": "https://www.yellowgram.dev"
   },
   "private": true,
   "dependencies": {
@@ -54,5 +55,13 @@
     "@types/node": "^20.14.0",
     "typescript": "^5.5.0",
     "vitest": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yellowgram/send-permit2-bound.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yellowgram/send-permit2-bound/issues"
+  },
+  "homepage": "https://www.yellowgram.dev/oss"
 }

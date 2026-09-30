@@ -1,9 +1,9 @@
 # send-permit2-bound — charter fences
 
-**Status:** LOCAL_SCAFFOLD · private · LaunchGate-before-expansion  
+**Status:** public GitHub · not on npm · LaunchGate-before-expansion  
 **As of:** 2026-09-30 (ET)
 
-This package is a **narrow** at-send middleware slice. Keep the surface honest. No public remote / npm until founder + LaunchGate.
+This package is a **narrow** at-send middleware slice. Keep the surface honest. Public GitHub source is OK. No npm publish and no Polar until founder + LaunchGate.
 
 ## Job (P0)
 
@@ -29,7 +29,7 @@ Closes send-allow ★ P0 Permit2 bypass (ERC-20 Approval-blind). Complements `re
 - Amount / expiration caps; deny over-cap / unknown Permit2 target under strict pin
 - Batch leaf deny-all; optional typed linkage stub (attest → raw match) — not a general EIP-712 phishing product
 - offline `demo:offline` + unit tests
-- MIT, self-hosted, local-only until founder
+- MIT, self-hosted; public GitHub OK; not on npm until founder
 - JSON-RPC deny code **-32086** (unsigned refuse stays **-32081**)
 
 ## Out of scope / fences
@@ -40,7 +40,7 @@ Closes send-allow ★ P0 Permit2 bypass (ERC-20 Approval-blind). Complements `re
 | **No phishing UX** | Not a general typed-data wallet wizard. Linkage stub only. |
 | **No Soft\*** | Forbidden in naming and docs. |
 | **No Polar / checkout URLs** | None in this tree. |
-| **No public/npm until founder** | Private local scaffold only. |
+| **No npm / Polar until founder** | Public GitHub OK. No `npm publish`, no Polar/checkout until LaunchGate + founder GO. |
 | **No Safe / custody / SaaS / mainnet SLA** | Charter out. |
 | **No auto-revoke** | Detection/emit is receive-side; this package only bounds at-send. |
 | **No ERC-20 approve-to-Permit2 here** | That surface is `send-approve-bound`. |
