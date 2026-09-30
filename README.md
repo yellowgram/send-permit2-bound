@@ -2,11 +2,11 @@
 
 More from yellowgram: [OSS tools](https://www.yellowgram.dev/oss).
 
-**Status:** public MIT source · not on npm yet · no Polar
+**Status:** public MIT · npm `send-permit2-bound@0.1.0` · no Polar
 
 Pin Uniswap **Permit2** by chain and bound `approve` / `permit*` / `permitTransferFrom*` calldata at `eth_sendRawTransaction`. One job: pin + calldata caps. No phishing UX. Compose after `send-approve-bound`. No keys. No simulation.
 
-> **Charter:** [CHARTER.md](./CHARTER.md) — no Soft\* · no Polar/checkout · no custody · not published to npm
+> **Charter:** [CHARTER.md](./CHARTER.md) — no Soft\* · no Polar/checkout · no custody
 
 ## Pin (local)
 
