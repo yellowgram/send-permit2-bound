@@ -1,0 +1,58 @@
+{
+  "name": "send-permit2-bound",
+  "version": "0.1.0",
+  "description": "Non-custodial at-send gate: pin Permit2 by chain; bound approve/permit*/permitTransferFrom* calldata; optional typed linkage stub. No phishing UX. No keys.",
+  "type": "module",
+  "main": "./dist/api.js",
+  "types": "./dist/api.d.ts",
+  "bin": {
+    "send-permit2-bound": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js"
+    }
+  },
+  "files": [
+    "dist",
+    "policy.example.json",
+    "policy.agent.example.json",
+    "docs/fixtures/offline.expected.txt",
+    "SECURITY.md",
+    "CHARTER.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "demo:offline": "npm run build && node scripts/demo-offline.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ethereum",
+    "permit2",
+    "middleware",
+    "agent",
+    "fail-closed"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "yellowgram"
+  },
+  "private": true,
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

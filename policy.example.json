@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "permit2ByChainId": {
+    "1": "0x000000000022D473030F116dDEE9F6B43aC78BA3"
+  },
+  "requirePinnedTo": true,
+  "spenders": ["0x1111111111111111111111111111111111111111"],
+  "maxAmountRaw": "1000",
+  "maxExpiration": "2000000000",
+  "requireTypedLinkage": false,
+  "_comment": "Local pins only (no oracle). Optional zkSync pin: \"324\": \"0x0000000000225e31D15943971F47aD3022F714Fa\". maxAmountRaw is raw smallest units — this package does not apply decimals. maxExpiration must be >= 1. POISON TEMPLATE — replace spenders before use."
+}
