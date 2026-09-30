@@ -4,7 +4,6 @@ export type Permit2DenyCode =
   | "permit2_over_cap"
   | "permit2_spender_denied"
   | "permit2_undecodable"
-  | "permit2_linkage_missing"
   | "tx_unparseable";
 
 export type Permit2Kind =
@@ -40,8 +39,6 @@ export interface Permit2BoundPolicy {
   maxAmountRaw: bigint;
   /** Unix-seconds ceiling. Must be >= 1 at policy load (DC6). */
   maxExpiration: bigint;
-  /** Optional typed linkage: attest→raw match only. */
-  requireTypedLinkage: boolean;
 }
 
 export interface Permit2Call {
@@ -56,7 +53,6 @@ export interface Permit2Call {
   /** SignatureTransfer permit deadline. */
   deadline?: bigint;
   undecodable?: boolean;
-  typedLinkageOk?: boolean;
 }
 
 export interface Permit2CheckResult {
@@ -130,6 +126,5 @@ export function defaultPermit2BoundPolicy(): Permit2BoundPolicy {
     spenders: new Set(),
     maxAmountRaw: 0n,
     maxExpiration: 1n,
-    requireTypedLinkage: false,
   };
 }

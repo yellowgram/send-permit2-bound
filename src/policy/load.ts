@@ -63,7 +63,6 @@ interface PolicyFileJson {
   spenders?: unknown;
   maxAmountRaw?: unknown;
   maxExpiration?: unknown;
-  requireTypedLinkage?: unknown;
 }
 
 /**
@@ -153,14 +152,6 @@ export function parsePermit2BoundPolicyDocument(
     `${source}.maxExpiration`
   );
 
-  let requireTypedLinkage = false;
-  if (doc.requireTypedLinkage !== undefined) {
-    if (typeof doc.requireTypedLinkage !== "boolean") {
-      throw new Error(`${source}: requireTypedLinkage must be a boolean`);
-    }
-    requireTypedLinkage = doc.requireTypedLinkage;
-  }
-
   return {
     enabled: doc.enabled,
     permit2ByChainId,
@@ -168,7 +159,6 @@ export function parsePermit2BoundPolicyDocument(
     spenders,
     maxAmountRaw,
     maxExpiration,
-    requireTypedLinkage,
   };
 }
 

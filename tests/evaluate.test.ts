@@ -199,18 +199,6 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.allow).toBe(true);
   });
 
-  it("typed linkage stub fail-closed when required", () => {
-    const p = examplePolicy({ requireTypedLinkage: true });
-    const r = gatePermit2Bound(p, {
-      to: PERMIT2_ETH_MAINNET,
-      data: encodePermit2Approve(TOKEN, SPENDER_OK, 10n, EXP_OK),
-      chainId: 1,
-      typedLinkageOk: false,
-    });
-    expect(r.allow).toBe(false);
-    expect(r.code).toBe("permit2_linkage_missing");
-  });
-
   it("disabled policy pass-through", () => {
     const p = examplePolicy({ enabled: false });
     const r = gatePermit2Bound(p, {

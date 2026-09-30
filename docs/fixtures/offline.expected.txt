@@ -5,14 +5,13 @@ no keys · no capital · no public RPC · pin Permit2 · no phishing UX
 2 unpinned to → allow=false code=permit2_unpinned
 3 over cap → allow=false code=permit2_over_cap
 4 bad spender → allow=false code=permit2_spender_denied
-5 linkage missing → allow=false code=permit2_linkage_missing
-6 non-permit2 pass-through → allow=true
-7 expiration 0 → allow=false code=permit2_over_cap
-8 PermitSingle under cap → allow=true
-9 PermitBatch hide-over-cap → allow=false code=permit2_over_cap
-10 permitTransferFrom over cap → allow=false code=permit2_over_cap
-11 uint160 max → allow=false code=permit2_over_cap
-12 transferFrom pass-through → allow=true
-13 zkSync pin under cap → allow=true
+5 non-permit2 pass-through → allow=true
+6 expiration 0 → allow=false code=permit2_over_cap
+7 PermitSingle under cap → allow=true
+8 PermitBatch hide-over-cap → allow=false code=permit2_over_cap
+9 permitTransferFrom over cap → allow=false code=permit2_over_cap
+10 uint160 max → allow=false code=permit2_over_cap
+11 transferFrom pass-through → allow=true
+12 zkSync pin under cap → allow=true
 
 charter: no Soft* · no Polar · no custody · LaunchGate-before-expansion

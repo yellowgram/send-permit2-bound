@@ -5,9 +5,10 @@
     "324": "0x0000000000225e31D15943971F47aD3022F714Fa"
   },
   "requirePinnedTo": true,
-  "spenders": ["0x1111111111111111111111111111111111111111"],
+  "spenders": [
+    "0x1111111111111111111111111111111111111111"
+  ],
   "maxAmountRaw": "1000000",
   "maxExpiration": "1893456000",
-  "requireTypedLinkage": false,
-  "_comment": "Agent example with ethereum + zkSync local pins. POISON TEMPLATE — replace spenders/caps before use."
+  "_comment": "Agent example with ethereum + zkSync local pins. POISON TEMPLATE \u2014 replace spenders/caps before use."
 }

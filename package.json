@@ -1,7 +1,7 @@
 {
   "name": "send-permit2-bound",
   "version": "0.1.0",
-  "description": "Non-custodial at-send gate: pin Permit2 by chain; bound approve/permit*/permitTransferFrom* calldata; optional typed linkage stub. No phishing UX. No keys.",
+  "description": "Non-custodial at-send gate: pin Permit2 by chain; bound approve/permit*/permitTransferFrom* calldata. No phishing UX. No keys.",
   "type": "module",
   "main": "./dist/api.js",
   "types": "./dist/api.d.ts",
@@ -20,9 +20,11 @@
     "policy.agent.example.json",
     "docs/fixtures/offline.expected.txt",
     "SECURITY.md",
+    "CHANGELOG.md",
     "CHARTER.md",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "docs/DEMO.md"
   ],
   "scripts": {
     "build": "tsc",

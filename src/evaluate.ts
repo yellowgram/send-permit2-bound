@@ -113,15 +113,6 @@ export function evaluatePermit2Bound(
     }
   }
 
-  if (policy.requireTypedLinkage && call.typedLinkageOk !== true) {
-    return {
-      allow: false,
-      code: "permit2_linkage_missing",
-      reason: "typed linkage required but missing or drift",
-      kind: call.kind,
-    };
-  }
-
   if (!call.leaves || call.leaves.length === 0) {
     return {
       allow: false,

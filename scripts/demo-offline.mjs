@@ -147,38 +147,28 @@ const r4 = gatePermit2Bound(policy, {
 });
 out(`4 bad spender → allow=${r4.allow} code=${r4.code}`);
 
-policy.requireTypedLinkage = true;
 const r5 = gatePermit2Bound(policy, {
-  to: PERMIT2_ETH_MAINNET,
-  data: encodeApprove(SPENDER_OK, 10n, EXP_OK),
-  chainId: 1,
-  typedLinkageOk: false,
-});
-out(`5 linkage missing → allow=${r5.allow} code=${r5.code}`);
-policy.requireTypedLinkage = false;
-
-const r6 = gatePermit2Bound(policy, {
   to: OTHER,
   data: "0xa9059cbb" + "00".repeat(64),
   chainId: 1,
 });
-out(`6 non-permit2 pass-through → allow=${r6.allow}`);
+out(`5 non-permit2 pass-through → allow=${r5.allow}`);
 
-const r7 = gatePermit2Bound(policy, {
+const r6 = gatePermit2Bound(policy, {
   to: PERMIT2_ETH_MAINNET,
   data: encodeApprove(SPENDER_OK, 10n, 0n),
   chainId: 1,
 });
-out(`7 expiration 0 → allow=${r7.allow} code=${r7.code}`);
+out(`6 expiration 0 → allow=${r6.allow} code=${r6.code}`);
 
-const r8 = gatePermit2Bound(policy, {
+const r7 = gatePermit2Bound(policy, {
   to: PERMIT2_ETH_MAINNET,
   data: encodePermitSingle(500n, EXP_OK, SPENDER_OK, DEADLINE_OK),
   chainId: 1,
 });
-out(`8 PermitSingle under cap → allow=${r8.allow}`);
+out(`7 PermitSingle under cap → allow=${r7.allow}`);
 
-const r9 = gatePermit2Bound(policy, {
+const r8 = gatePermit2Bound(policy, {
   to: PERMIT2_ETH_MAINNET,
   data: encodePermitBatch(
     [
@@ -190,40 +180,40 @@ const r9 = gatePermit2Bound(policy, {
   ),
   chainId: 1,
 });
-out(`9 PermitBatch hide-over-cap → allow=${r9.allow} code=${r9.code}`);
+out(`8 PermitBatch hide-over-cap → allow=${r8.allow} code=${r8.code}`);
 
-const r10 = gatePermit2Bound(policy, {
+const r9 = gatePermit2Bound(policy, {
   to: PERMIT2_ETH_MAINNET,
   data: encodePermitTransferFrom(1001n, DEADLINE_OK),
   chainId: 1,
 });
-out(`10 permitTransferFrom over cap → allow=${r10.allow} code=${r10.code}`);
+out(`9 permitTransferFrom over cap → allow=${r9.allow} code=${r9.code}`);
 
-const r11 = gatePermit2Bound(policy, {
+const r10 = gatePermit2Bound(policy, {
   to: PERMIT2_ETH_MAINNET,
   data: encodeApprove(SPENDER_OK, UINT160_MAX, EXP_OK),
   chainId: 1,
 });
-out(`11 uint160 max → allow=${r11.allow} code=${r11.code}`);
+out(`10 uint160 max → allow=${r10.allow} code=${r10.code}`);
 
-const r12 = gatePermit2Bound(policy, {
+const r11 = gatePermit2Bound(policy, {
   to: PERMIT2_ETH_MAINNET,
   data: "0x36c78516" + "00".repeat(128),
   chainId: 1,
 });
-out(`12 transferFrom pass-through → allow=${r12.allow}`);
+out(`11 transferFrom pass-through → allow=${r11.allow}`);
 
 const zk = defaultPermit2BoundPolicy();
 zk.permit2ByChainId = new Map([["324", PERMIT2_ZKSYNC.toLowerCase()]]);
 zk.spenders = new Set([SPENDER_OK.toLowerCase()]);
 zk.maxAmountRaw = 1000n;
 zk.maxExpiration = 2_000_000_000n;
-const r13 = gatePermit2Bound(zk, {
+const r12 = gatePermit2Bound(zk, {
   to: PERMIT2_ZKSYNC,
   data: encodeApprove(SPENDER_OK, 10n, EXP_OK),
   chainId: 324,
 });
-out(`13 zkSync pin under cap → allow=${r13.allow}`);
+out(`12 zkSync pin under cap → allow=${r12.allow}`);
 
 out("");
 out("charter: no Soft* · no Polar · no custody · LaunchGate-before-expansion");

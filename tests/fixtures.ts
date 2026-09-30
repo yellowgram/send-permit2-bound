@@ -265,7 +265,6 @@ export function examplePolicy(opts?: {
   maxExpiration?: bigint;
   spenders?: string[];
   requirePinnedTo?: boolean;
-  requireTypedLinkage?: boolean;
   enabled?: boolean;
 }): Permit2BoundPolicy {
   const p = defaultPermit2BoundPolicy();
@@ -278,7 +277,6 @@ export function examplePolicy(opts?: {
   p.maxAmountRaw = opts?.maxAmountRaw ?? 1000n;
   p.maxExpiration = opts?.maxExpiration ?? 2_000_000_000n;
   p.requirePinnedTo = opts?.requirePinnedTo ?? true;
-  p.requireTypedLinkage = opts?.requireTypedLinkage ?? false;
   p.enabled = opts?.enabled ?? true;
   return p;
 }

@@ -6,7 +6,6 @@ export interface Permit2GateInput {
   to?: string | null;
   data?: string | null;
   chainId?: number;
-  typedLinkageOk?: boolean;
 }
 
 /**
@@ -18,8 +17,5 @@ export function gatePermit2Bound(
   input: Permit2GateInput
 ): Permit2CheckResult {
   const call = decodePermit2Calldata(input.to, input.data, input.chainId);
-  if (input.typedLinkageOk !== undefined) {
-    call.typedLinkageOk = input.typedLinkageOk;
-  }
   return evaluatePermit2Bound(policy, call);
 }

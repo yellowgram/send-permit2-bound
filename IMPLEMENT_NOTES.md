@@ -2,7 +2,7 @@
 
 **As of:** 2026-09-30 (ET)  
 **Against:** `/workspace/send-permit2-bound-lg/DESIGN-GATE.md` PASS-with-conditions (DC1–DC17)  
-**Artifact:** `/workspace/send-permit2-bound` (still `"private": true`, no remote, no npm publish)
+**Artifact:** `/workspace/send-permit2-bound` (still `"private": true`; public GitHub OK; no npm publish)
 
 ## What changed vs scaffold
 
@@ -16,7 +16,7 @@
 | Policy | `maxAmount` / `maxExpiration:0` skip | `maxAmountRaw`; `maxExpiration >= 1` at load; non-empty `spenders` when enabled |
 | Middleware | Absent | Thin signed-raw handler: unsigned → `-32081`; denies + unparseable → `-32086`; never fail-open |
 | Docs | Scaffold deny table | Verbatim honesty lines DC6/DC10/DC14/DC17 in README + SECURITY |
-| package.json | private, no public URLs | Still private; **no** `repository` / `homepage` / `bugs` / `prepublishOnly`; added `viem` for signed-raw parse only |
+| package.json | private | Still private; homepage/OSS URLs present; `files[]` includes CHANGELOG + docs/DEMO.md; no npm publish |
 
 ## DC checklist
 
@@ -31,7 +31,7 @@
 | DC7 | satisfied | uint160 max / uint256 max always `permit2_over_cap` while enabled |
 | DC8 | satisfied | `permit2ByChainId`; zkSync documented; `requirePinnedTo` default true; no oracle |
 | DC9 | satisfied | Non-empty `spenders` when enabled; empty → load refuse |
-| DC10 | satisfied | Linkage stub only; verbatim no-phishing-UX line |
+| DC10 | satisfied (narrowed) | Typed linkage **removed** from P0 API; verbatim no-phishing-UX line; attest→raw out of P0 |
 | DC11 | satisfied | Handler: `-32081` unsigned; `-32086` deny/unparseable; create forward; no fail-open |
 | DC12 | satisfied | Explicit `enabled`; invalid/missing file refuses start; `gate_disabled` on stderr; example `enabled:true` |
 | DC13 | satisfied | Closed deny-code set only (+ `tx_unparseable`) |
@@ -52,3 +52,7 @@ R1–R17 from DESIGN-GATE remain rejected: no phishing wallet UX, no ERC-20 appr
 ## DC still open
 
 None of DC1–DC17 are left intentionally open for this P0. Expansion (extra chains beyond documented pins, live intel adapters, fat typed product, multicall unwind) remains LaunchGate-gated and out of this implement. Sibling packages held.
+
+## DHH close (2026-09-30)
+
+Removed typed-linkage boolean stub (`requireTypedLinkage` / `typedLinkageOk` / `permit2_linkage_missing`) from policy, evaluate, gate, handler, README lead, and demo. P0 one-job story is pin Permit2 + bound approve/permit*/permitTransferFrom* calldata only. Packaging: `CHANGELOG.md` + `docs/DEMO.md` in `files[]`. Soft\* ban-token only. Still **not** ready-for-npm (LaunchGate + founder GO out of this audit).

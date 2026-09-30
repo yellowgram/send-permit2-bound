@@ -7,12 +7,12 @@ This package is a **narrow** at-send middleware slice. Keep the surface honest. 
 
 ## Job (P0)
 
-Pin Uniswap **Permit2** and bound `approve` / `permit*` calldata (and optional typed-data linkage stub) at `eth_sendRawTransaction`.
+Pin Uniswap **Permit2** and bound `approve` / `permit*` / `permitTransferFrom*` calldata at `eth_sendRawTransaction`.
 
 - Pin known Permit2 addresses (chain map; local pins, not live oracle SaaS)
 - Bound spender / amount / expiration on Permit2 paths
-- Optional **typed linkage stub** only when submit consumes a prior typed signature — **no phishing UX**
 - Fail-closed on definite policy miss; sealed offline fixtures
+- **No** typed-data attest→raw linkage in P0 (no phishing UX)
 
 ## Compose slot
 
@@ -20,14 +20,14 @@ Pin Uniswap **Permit2** and bound `approve` / `permit*` calldata (and optional t
 … → send-allow → send-approve-bound → send-permit2-bound → …
 ```
 
-Closes send-allow ★ P0 Permit2 bypass (ERC-20 Approval-blind). Complements `recv-permit2-watch` (priced-with under `recv-approval-watch`). ERC-20 approve *into* Permit2 stays `send-approve-bound`.
+Closes send-allow ★ P0 Permit2 bypass (ERC-20 Approval-blind). ERC-20 approve *into* Permit2 stays `send-approve-bound`.
 
 ## In scope (P0)
 
 - Pure evaluate + thin middleware hook
 - Permit2 contract pin + selector/calldata bounds (AllowanceTransfer + SignatureTransfer P0 set)
 - Amount / expiration caps; deny over-cap / unknown Permit2 target under strict pin
-- Batch leaf deny-all; optional typed linkage stub (attest → raw match) — not a general EIP-712 phishing product
+- Batch leaf deny-all
 - offline `demo:offline` + unit tests
 - MIT, self-hosted; public GitHub OK; not on npm until founder
 - JSON-RPC deny code **-32086** (unsigned refuse stays **-32081**)
@@ -37,7 +37,7 @@ Closes send-allow ★ P0 Permit2 bypass (ERC-20 Approval-blind). Complements `re
 | Fence | Meaning |
 | --- | --- |
 | **No key custody** | No signing product. |
-| **No phishing UX** | Not a general typed-data wallet wizard. Linkage stub only. |
+| **No phishing UX** | Not a typed-data wallet wizard. Attest→raw linkage is out of P0. |
 | **No Soft\*** | Forbidden in naming and docs. |
 | **No Polar / checkout URLs** | None in this tree. |
 | **No npm / Polar until founder** | Public GitHub OK. No `npm publish`, no Polar/checkout until LaunchGate + founder GO. |
@@ -53,7 +53,6 @@ Closes send-allow ★ P0 Permit2 bypass (ERC-20 Approval-blind). Complements `re
 | Call to non-pinned Permit2 under pin-required | **fail-closed** | `permit2_unpinned` |
 | Amount / expiration over cap | **fail-closed** | `permit2_over_cap` |
 | Spender not allowlisted | **fail-closed** | `permit2_spender_denied` |
-| Typed linkage required but missing/drift | **fail-closed** | stub path |
 | Non-Permit2 calldata | **pass-through** | including transferFrom/lockdown |
 
 ## Soft* ban

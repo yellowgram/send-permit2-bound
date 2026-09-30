@@ -4,7 +4,7 @@ More from yellowgram: [OSS tools](https://www.yellowgram.dev/oss).
 
 **Status:** public MIT source · not on npm yet · no Polar
 
-Pin Uniswap **Permit2** by chain and bound `approve` / `permit*` / `permitTransferFrom*` calldata at `eth_sendRawTransaction`. Optional typed linkage stub — **no phishing UX**. Compose after `send-approve-bound`. No keys. No simulation.
+Pin Uniswap **Permit2** by chain and bound `approve` / `permit*` / `permitTransferFrom*` calldata at `eth_sendRawTransaction`. One job: pin + calldata caps. No phishing UX. Compose after `send-approve-bound`. No keys. No simulation.
 
 > **Charter:** [CHARTER.md](./CHARTER.md) — no Soft\* · no Polar/checkout · no custody · not published to npm
 
@@ -15,6 +15,8 @@ npm install
 npm test
 npm run demo:offline
 ```
+
+See [docs/DEMO.md](./docs/DEMO.md) for the sealed offline fixture walkthrough.
 
 ## Policy shape
 
@@ -27,8 +29,7 @@ npm run demo:offline
   "requirePinnedTo": true,
   "spenders": ["0xSpender…"],
   "maxAmountRaw": "1000",
-  "maxExpiration": "2000000000",
-  "requireTypedLinkage": false
+  "maxExpiration": "2000000000"
 }
 ```
 
@@ -44,7 +45,7 @@ maxAmountRaw is an integer in the token's smallest unit (uint160 path for Allowa
 
 Permit2 AllowanceTransfer expiration 0 means the allowance expires at the current block timestamp. This gate treats expiration 0 as permit2_over_cap when the policy requires a positive maxExpiration.
 
-Typed linkage is an attest-to-raw match stub. This package is not a Permit2 phishing wallet and does not present EIP-712 typed data for humans to sign.
+This package is not a Permit2 phishing wallet and does not present EIP-712 typed data for humans to sign. Typed-data attest→raw linkage is out of P0 (not exported).
 
 Calldata whose selector is not in this package's Permit2 P0 pin set is passed through, including Permit2 transferFrom/lockdown and multicall wrappers. This gate does not unwind inner calls and does not re-check standing Permit2 allowances on transferFrom.
 
@@ -74,7 +75,6 @@ Any leaf over amount / expiration / spender policy denies the **entire** batch.
 | `permit2_over_cap` | amount, expiration, sigDeadline, or deadline over policy |
 | `permit2_spender_denied` | spender not allowlisted |
 | `permit2_undecodable` | Permit2-shaped but undecodable / non-canonical (FC) |
-| `permit2_linkage_missing` | typed linkage required but missing/drift |
 | `tx_unparseable` | signed raw could not be parsed (middleware) |
 
 ## JSON-RPC

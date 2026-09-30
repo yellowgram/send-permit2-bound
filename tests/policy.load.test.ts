@@ -84,7 +84,7 @@ describe("policy load (DC6 / DC8 / DC9 / DC12)", () => {
 
   it("load file parses example shape", () => {
     const path = join(tmpdir(), `permit2-policy-${Date.now()}.json`);
-    writeFileSync(path, JSON.stringify(validDoc({ requireTypedLinkage: false })));
+    writeFileSync(path, JSON.stringify(validDoc()));
     try {
       const p = loadPermit2BoundPolicyFile(path);
       expect(p.maxAmountRaw).toBe(1000n);

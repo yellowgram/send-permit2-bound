@@ -19,8 +19,6 @@ export interface HandlerDeps {
     url: string,
     body: JsonRpcRequest
   ) => Promise<JsonRpcResponse>;
-  /** Optional typed-linkage attestation for the raw being submitted. */
-  typedLinkageOk?: boolean;
 }
 
 async function forwardRaw(
@@ -184,7 +182,6 @@ export async function handleRequest(
       to: parsed.to,
       data: parsed.data,
       chainId: parsed.chainId,
-      typedLinkageOk: deps.typedLinkageOk,
     });
     if (!check.allow) {
       return denied(config, req, {
