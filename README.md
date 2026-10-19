@@ -95,3 +95,7 @@ Contract create (`to` null) is forwarded without Permit2 decode; constructor-hid
 ## License
 
 MIT — [LICENSE](./LICENSE).
+
+---
+
+Part of yellowgram open source tools: https://www.yellowgram.dev/oss
