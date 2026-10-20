@@ -1,3 +1,4 @@
+import "./deprecated.js";
 export { PACKAGE_VERSION } from "./version.js";
 export {
   PERMIT2_ETH_MAINNET,

@@ -1,4 +1,4 @@
-/** Closed deny-code set for P0 (DC13). */
+/** Closed deny-code set for v0.1. */
 export type Permit2DenyCode =
   | "permit2_unpinned"
   | "permit2_over_cap"
@@ -31,13 +31,13 @@ export interface Permit2BoundPolicy {
   enabled: boolean;
   /** chainId string → lowercased Permit2 address. Local pins only. */
   permit2ByChainId: Map<string, string>;
-  /** Default true: P0 selector requires tx.to match pin for chainId. */
+  /** Default true: selector requires tx.to match pin for chainId. */
   requirePinnedTo: boolean;
   /** Lowercased spender allowlist. Non-empty required when enabled. */
   spenders: Set<string>;
   /** Raw integer cap (token smallest unit / uint160 path). */
   maxAmountRaw: bigint;
-  /** Unix-seconds ceiling. Must be >= 1 at policy load (DC6). */
+  /** Unix-seconds ceiling. Must be >= 1 at policy load. */
   maxExpiration: bigint;
 }
 
@@ -48,7 +48,7 @@ export interface Permit2Call {
   to?: string;
   chainId?: number;
   leaves: Permit2Leaf[];
-  /** AllowanceTransfer permit sigDeadline — checked like expiration (DC3). */
+  /** AllowanceTransfer permit sigDeadline — checked like expiration. */
   sigDeadline?: bigint;
   /** SignatureTransfer permit deadline. */
   deadline?: bigint;

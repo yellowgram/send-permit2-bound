@@ -50,7 +50,7 @@ function parsePositiveUint(v: unknown, label: string): bigint {
   const s = typeof v === "number" ? String(v) : v;
   if (typeof s !== "string" || !POS_INT_RE.test(s)) {
     throw new Error(
-      `${label}: must be a positive integer (>= 1). maxExpiration: 0 is refused at policy load (DC6).`
+      `${label}: must be a positive integer (>= 1). maxExpiration: 0 is refused at policy load.`
     );
   }
   return BigInt(s);
@@ -80,7 +80,7 @@ export function parsePermit2BoundPolicyDocument(
 
   if (typeof doc.enabled !== "boolean") {
     throw new Error(
-      `${source}: enabled must be an explicit boolean (DC12). Refusing to start.`
+      `${source}: enabled must be an explicit boolean. Refusing to start.`
     );
   }
 
@@ -135,7 +135,7 @@ export function parsePermit2BoundPolicyDocument(
 
   if (doc.enabled && spenders.size === 0) {
     throw new Error(
-      `${source}: spenders must be non-empty when enabled (DC9). Empty set is not allow-all.`
+      `${source}: spenders must be non-empty when enabled. Empty set is not allow-all.`
     );
   }
 

@@ -216,7 +216,7 @@ const r12 = gatePermit2Bound(zk, {
 out(`12 zkSync pin under cap → allow=${r12.allow}`);
 
 out("");
-out("charter: no Soft* · no Polar · no custody · LaunchGate-before-expansion");
+out("deprecated: use l2-send-guard 1.x · this package holds no keys");
 
 const expected = readFileSync(EXPECTED, "utf8").replace(/\r\n/g, "\n").trimEnd();
 const actual = lines.join("\n").trimEnd();

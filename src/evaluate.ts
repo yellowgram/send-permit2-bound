@@ -19,7 +19,7 @@ function checkTimeBound(
   maxExpiration: bigint,
   label: string
 ): Permit2CheckResult | null {
-  // DC6: 1 <= value <= maxExpiration; 0 → over_cap under positive maxExpiration
+  // 1 <= value <= maxExpiration; 0 → over_cap under positive maxExpiration
   if (value < 1n || value > maxExpiration) {
     return {
       allow: false,
@@ -81,7 +81,7 @@ function checkLeafSpender(
 
 /**
  * Pure Permit2-bound check. No network / eth_call / oracle.
- * Any failing batch leaf denies the entire call (DC4).
+ * Any failing batch leaf denies the entire call.
  */
 export function evaluatePermit2Bound(
   policy: Permit2BoundPolicy,
@@ -122,7 +122,7 @@ export function evaluatePermit2Bound(
     };
   }
 
-  // DC4: any leaf over-cap / bad spender denies the whole call.
+  // any leaf over-cap / bad spender denies the whole call.
   for (const leaf of call.leaves) {
     const spend = checkLeafSpender(leaf, policy);
     if (spend) return { ...spend, kind: call.kind };

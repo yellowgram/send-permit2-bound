@@ -85,7 +85,7 @@ function denied(
 }
 
 /**
- * Thin middleware (DC11):
+ * Thin middleware:
  * 1. Refuse eth_sendTransaction (-32081). No key custody.
  * 2. Non-send methods → passthrough to upstream.
  * 3. Parse signed raw. Unparseable → -32086 tx_unparseable (never fail-open).
@@ -162,7 +162,7 @@ export async function handleRequest(
     });
   }
 
-  // DC11: contract create — forward; constructor-hidden grants outside P0.
+  // contract create — forward; constructor-hidden grants outside v0.1.
   if (parsed.isCreate) {
     const upstream = await forward(config.upstreamRpcUrl, req);
     const meta: SendPermit2BoundResponseMeta = {
@@ -176,7 +176,7 @@ export async function handleRequest(
     return { ...upstream, sendPermit2Bound: meta };
   }
 
-  // DC12: enabled false → forward (gate_disabled already logged at boot).
+  // enabled false → forward (gate_disabled already logged at boot).
   if (config.policy.enabled) {
     const check = gatePermit2Bound(config.policy, {
       to: parsed.to,

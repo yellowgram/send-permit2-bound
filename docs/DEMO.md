@@ -26,4 +26,4 @@ What it shows (sealed allow **and** deny):
 11. Permit2 `transferFrom` selector → pass-through allow
 12. zkSync pin under cap → allow
 
-Fixture SoT; compose after send-approve-bound. No typed-linkage / phishing UX in P0.
+Fixture SoT; compose after send-approve-bound. No typed-linkage / phishing UX in v0.1.

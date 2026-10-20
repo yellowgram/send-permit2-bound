@@ -28,7 +28,7 @@ function cfg(opts: { enabled?: boolean } = {}): SendPermit2BoundConfig {
   };
 }
 
-describe("handler — DC15 (8)", () => {
+describe("handler —  (8)", () => {
   it("refuses eth_sendTransaction with -32081 and zero upstream calls", async () => {
     const forward = vi.fn();
     const res = await handleRequest(

@@ -296,7 +296,7 @@ function decodePermitWitnessTransferFrom(
 }
 
 /**
- * Decode P0 Permit2 calldata. Non-P0 selector → kind "other" (pass-through).
+ * Decode Permit2 calldata. Non-selector → kind "other" (pass-through).
  * Incomplete / non-canonical → undecodable (never invent amount/expiration 0).
  */
 export function decodePermit2Calldata(

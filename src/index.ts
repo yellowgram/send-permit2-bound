@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+import "./deprecated.js";
 /**
  * send-permit2-bound CLI — JSON-RPC Permit2 calldata gate.
- * No key custody. No phishing UX. No simulation. See README + CHARTER.md.
+ * No key custody. No phishing UX. No simulation. Deprecated: use l2-send-guard.
  */
 import { loadConfig } from "./config.js";
 import { listen } from "./proxy/server.js";

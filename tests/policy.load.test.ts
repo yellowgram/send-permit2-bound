@@ -21,7 +21,7 @@ function validDoc(over: Record<string, unknown> = {}) {
   };
 }
 
-describe("policy load (DC6 / DC8 / DC9 / DC12)", () => {
+describe("policy load", () => {
   it("accepts enabled true + pins + spenders", () => {
     const p = parsePermit2BoundPolicyDocument(validDoc());
     expect(p.enabled).toBe(true);
@@ -38,13 +38,13 @@ describe("policy load (DC6 / DC8 / DC9 / DC12)", () => {
     );
   });
 
-  it("refuses maxExpiration 0 (DC6)", () => {
+  it("refuses maxExpiration 0", () => {
     expect(() =>
       parsePermit2BoundPolicyDocument(validDoc({ maxExpiration: "0" }))
     ).toThrow(/positive integer/);
   });
 
-  it("refuses empty spenders when enabled (DC9)", () => {
+  it("refuses empty spenders when enabled", () => {
     expect(() =>
       parsePermit2BoundPolicyDocument(validDoc({ spenders: [] }))
     ).toThrow(/spenders must be non-empty/);

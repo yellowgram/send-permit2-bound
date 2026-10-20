@@ -32,7 +32,7 @@ export function loadConfig(): SendPermit2BoundConfig {
   const policyPath = env("SEND_PERMIT2_BOUND_POLICY_FILE");
   if (!policyPath) {
     throw new Error(
-      "SEND_PERMIT2_BOUND_POLICY_FILE is required. Refusing to start without an explicit policy file (DC12)."
+      "SEND_PERMIT2_BOUND_POLICY_FILE is required. Refusing to start without an explicit policy file."
     );
   }
 

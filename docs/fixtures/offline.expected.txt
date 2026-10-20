@@ -14,4 +14,4 @@ no keys · no capital · no public RPC · pin Permit2 · no phishing UX
 11 transferFrom pass-through → allow=true
 12 zkSync pin under cap → allow=true
 
-charter: no Soft* · no Polar · no custody · LaunchGate-before-expansion
+deprecated: use l2-send-guard 1.x · this package holds no keys

@@ -41,7 +41,7 @@ describe("decodePermit2Calldata", () => {
     expect(c.leaves[0]?.expiration).toBe(EXP_OK);
   });
 
-  it("dirty address padding on approve spender → undecodable (DC15.7)", () => {
+  it("dirty address padding on approve spender → undecodable", () => {
     const c = decodePermit2Calldata(
       PERMIT2_ETH_MAINNET,
       encodePermit2ApproveDirtySpender(TOKEN, SPENDER_OK, 10n, EXP_OK),
@@ -51,7 +51,7 @@ describe("decodePermit2Calldata", () => {
     expect(c.undecodable).toBe(true);
   });
 
-  it("short permit body → undecodable, no invented zeros (DC15.5)", () => {
+  it("short permit body → undecodable, no invented zeros", () => {
     const c = decodePermit2Calldata(
       PERMIT2_ETH_MAINNET,
       SELECTOR_PERMIT2_PERMIT_SINGLE + "00".repeat(16),
@@ -104,13 +104,13 @@ describe("decodePermit2Calldata", () => {
     expect(c.leaves[1]?.amount).toBe(200n);
   });
 
-  it("non-P0 selector → other / pass-through", () => {
+  it("non-selector → other / pass-through", () => {
     const c = decodePermit2Calldata(PERMIT2_ETH_MAINNET, "0xa9059cbb" + "00".repeat(64), 1);
     expect(c.kind).toBe("other");
     expect(c.isPermit2Selector).toBe(false);
   });
 
-  it("transferFrom selector to pinned Permit2 → other (DC14 pass-through)", () => {
+  it("transferFrom selector to pinned Permit2 → other ( pass-through)", () => {
     const c = decodePermit2Calldata(
       PERMIT2_ETH_MAINNET,
       "0x36c78516" + "00".repeat(128),
@@ -120,7 +120,7 @@ describe("decodePermit2Calldata", () => {
   });
 });
 
-describe("gatePermit2Bound — core + DC15", () => {
+describe("gatePermit2Bound — core + ", () => {
   it("pass-through non-permit2", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: OTHER,
@@ -180,7 +180,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.code).toBe("permit2_over_cap");
   });
 
-  it("approve expiration 0 → permit2_over_cap under positive maxExpiration (DC15.4)", () => {
+  it("approve expiration 0 → permit2_over_cap under positive maxExpiration", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: PERMIT2_ETH_MAINNET,
       data: encodePermit2Approve(TOKEN, SPENDER_OK, 10n, 0n),
@@ -209,7 +209,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.allow).toBe(true);
   });
 
-  it("PermitSingle over-cap deny (DC15.1)", () => {
+  it("PermitSingle over-cap deny", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: PERMIT2_ETH_MAINNET,
       data: encodePermitSingle({
@@ -224,7 +224,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.code).toBe("permit2_over_cap");
   });
 
-  it("PermitSingle under-cap allow (DC15.1)", () => {
+  it("PermitSingle under-cap allow", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: PERMIT2_ETH_MAINNET,
       data: encodePermitSingle({
@@ -238,7 +238,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.allow).toBe(true);
   });
 
-  it("PermitBatch leaf0 under / leaf1 over → deny (DC15.2)", () => {
+  it("PermitBatch leaf0 under / leaf1 over → deny", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: PERMIT2_ETH_MAINNET,
       data: encodePermitBatch({
@@ -255,7 +255,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.code).toBe("permit2_over_cap");
   });
 
-  it("PermitBatch leaf0 over / leaf1 under → deny swapped (DC15.2)", () => {
+  it("PermitBatch leaf0 over / leaf1 under → deny swapped", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: PERMIT2_ETH_MAINNET,
       data: encodePermitBatch({
@@ -288,7 +288,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.allow).toBe(true);
   });
 
-  it("SignatureTransfer permitTransferFrom over-cap deny (DC15.3)", () => {
+  it("SignatureTransfer permitTransferFrom over-cap deny", () => {
     const r = gatePermit2Bound(examplePolicy(), {
       to: PERMIT2_ETH_MAINNET,
       data: encodePermitTransferFrom({
@@ -351,7 +351,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.allow).toBe(true);
   });
 
-  it("zkSync pin: canonical address on mismatched chainId → unpinned (DC15.6)", () => {
+  it("zkSync pin: canonical address on mismatched chainId → unpinned", () => {
     const p = examplePolicy({
       chainId: 324,
       pin: PERMIT2_ZKSYNC,
@@ -365,7 +365,7 @@ describe("gatePermit2Bound — core + DC15", () => {
     expect(r.code).toBe("permit2_unpinned");
   });
 
-  it("zkSync pin: correct pin allows under-cap approve (DC15.6)", () => {
+  it("zkSync pin: correct pin allows under-cap approve", () => {
     const p = examplePolicy({
       chainId: 324,
       pin: PERMIT2_ZKSYNC,
