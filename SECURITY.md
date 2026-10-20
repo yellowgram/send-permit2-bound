@@ -24,4 +24,4 @@ Default listen address is `127.0.0.1`. Binding `0.0.0.0` without an ACL makes th
 
 ## Reporting
 
-Do not open a public issue with a funded raw transaction or a private key. Prefer a private advisory when a private repo exists. Include package version/commit and a sealed repro. No bug-bounty program in this package.
+Do not open a public issue with a funded raw transaction or a private key. Prefer a private advisory when a private repo exists. Include package version/commit and a repro that needs no mainnet key. No bug-bounty program in this package.

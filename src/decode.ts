@@ -1,6 +1,6 @@
 import type { Permit2Call, Permit2Kind, Permit2Leaf } from "./types.js";
 import {
-  P0_PERMIT2_SELECTORS,
+  PERMIT2_SELECTORS,
   SELECTOR_PERMIT2_APPROVE,
   SELECTOR_PERMIT2_PERMIT_BATCH,
   SELECTOR_PERMIT2_PERMIT_SINGLE,
@@ -314,7 +314,7 @@ export function decodePermit2Calldata(
   const selector = "0x" + hex.slice(0, 8);
   const body = hex.slice(8);
 
-  if (!P0_PERMIT2_SELECTORS.has(selector)) {
+  if (!PERMIT2_SELECTORS.has(selector)) {
     return { ...base("other", "none", to), chainId };
   }
 

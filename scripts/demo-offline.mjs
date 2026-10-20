@@ -1,5 +1,5 @@
 /**
- * Offline demo — sealed fixture, no public RPC / keys / capital.
+ * Offline demo — fixed fixture, no public RPC / keys / capital.
  * Diff vs docs/fixtures/offline.expected.txt — exits non-zero on drift.
  */
 import { readFileSync } from "node:fs";
