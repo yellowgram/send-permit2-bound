@@ -1,7 +1,7 @@
 # send-permit2-bound (deprecated)
 
 **This package is merged into [`l2-send-guard`](https://github.com/yellowgram/l2-safety-proxy) 1.x and gets no more fixes.**
-Version 0.2.0 behaves exactly like 0.1.0 and prints one deprecation warning when imported.
+Version 0.2.0 behaves like 0.1.0 and prints one deprecation warning when imported or run. The bin also answers `send-permit2-bound --help` and `--version` (see the CHANGELOG).
 
 ## Why
 

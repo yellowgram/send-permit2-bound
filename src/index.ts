@@ -6,16 +6,23 @@ import "./deprecated.js";
  */
 import { loadConfig } from "./config.js";
 import { listen } from "./proxy/server.js";
+import { exitSoon, HELP, parseCli } from "./cli.js";
+import { PACKAGE_VERSION } from "./version.js";
 
 async function main(): Promise<void> {
   const config = loadConfig();
   await listen(config);
 }
 
-main().catch((err) => {
-  console.error(
-    "[send-permit2-bound] fatal:",
-    err instanceof Error ? err.message : err
-  );
-  process.exit(1);
-});
+const cmd = parseCli(process.argv.slice(2));
+if (cmd.kind === "help") process.stdout.write(HELP);
+else if (cmd.kind === "version") process.stdout.write(`${PACKAGE_VERSION}\n`);
+else if (cmd.kind === "error") {
+  console.error(`[send-permit2-bound] ${cmd.message}`);
+  exitSoon(2);
+} else {
+  main().catch((err) => {
+    console.error("[send-permit2-bound] fatal:", err instanceof Error ? err.message : err);
+    exitSoon(1);
+  });
+}

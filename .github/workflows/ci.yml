@@ -31,4 +31,4 @@ jobs:
         with:
           node-version: "22"
       - name: Pack from a fresh clone, install the tarball, import it
-        run: scripts/pack-smoke.sh 'test -e node_modules/.bin/send-permit2-bound'
+        run: EXPECT_DEPRECATION='send-permit2-bound is deprecated' scripts/pack-smoke.sh
