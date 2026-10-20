@@ -4,6 +4,7 @@
 
 - Deprecated. Merged into `l2-send-guard` 1.x, which fixes nested-call decoding, EIP-7702 authorizations, cumulative limits, ungated submit methods and memory-only state. This version behaves like 0.1.0 and emits one `DeprecationWarning` on import.
 - Removed internal planning files.
+- `PERMIT2_SELECTORS` is the new name; the 0.1.0 name `P0_PERMIT2_SELECTORS` is still exported as a deprecated alias, so every 0.1.0 import keeps working.
 
 ## 0.1.0
 

@@ -40,6 +40,9 @@ export const PERMIT2_SELECTORS = new Set([
   SELECTOR_PERMIT2_PERMIT_WITNESS_TRANSFER_FROM_ALT,
 ]);
 
+/** @deprecated 0.1.0 name, kept so 0.2.0 exports everything 0.1.0 did. Use PERMIT2_SELECTORS. */
+export const P0_PERMIT2_SELECTORS = PERMIT2_SELECTORS;
+
 export const UINT160_MAX = (1n << 160n) - 1n;
 export const UINT256_MAX =
   0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn;
